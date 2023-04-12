@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ASSIGN show for {{ s1.show_name }}</h1>
+    <form action="/assign/{{ s1.show_id }}" method="POST">
+        <label for="vens">Select Venue</label>
+        <select name="v_id" id="vens">
+            {% for venue in venues %}
+            <option value="{{venue.venue_id}}">{{venue.venue_name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Assign">
+    </form>
+</body>
+</html>

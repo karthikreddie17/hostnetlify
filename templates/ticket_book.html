@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+</head>
+<body>
+    <link rel="stylesheet" href="../static/ticket_book.css">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="usr">User Bookings</div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('userdashboard') }}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <main class="main page__main">
+        <form class="card-form" method="POST" action="/ticketbooking">
+            <div class="card-form__main-content">
+                <h2 class="card-form__title">Booking Show2 venue-2</h2>
+                <p class="card-form__desc">Please enter the number of tickets and confirm booking.</p>
+                <p class="seat_tot">Total number of seats:</p>
+                <p class="seat_ava">Available Seats:</p>
+                <p class="time"> Timings:</p>
+                {{ form.hidden_tag() }}
+
+                {{ form.show_id.label(class="card-form__label") }}
+                <select class="card-form__input" name="show_id" id="show_id">
+                    {% for show in shows %}
+                        <option value="{{ show.show_id }}">{{ show.show_name }}</option>
+                    {% endfor %}
+                </select>
+
+                {{ form.venue_id.label(class="card-form__label") }}
+                <select class="card-form__input" name="venue_id" id="venue_id">
+                    {% for venue in venues %}
+                        <option value="{{ venue.venue_id }}">{{ venue.venue_name }}</option>
+                    {% endfor %}
+                </select>
+
+                {{ form.numseats.label(class="card-form__label") }}
+                {{ form.numseats(class="card-form__input", type="number", placeholder="Enter the number of seats", id="num_seats", min="0", onkeyup="tot_price()") }}
+                {{ form.price.label(class="card-form__label") }}
+                {{ form.price(class="card-form__input", type="number", id="price", value="300", readonly="True") }}
+                {{ form.total.label(class="card-form__label") }}
+                {{ form.total(class="card-form__input", type="number", id="total", value="0", readonly="True") }}
+
+            </div>
+            <div class="card-form__footer">
+                <button class="primary-btn" type="submit">Confirm Booking</button>
+            </div>
+        </form>
+    </main>
+    <script>
+        function tot_price() {
+            var num_seats = document.getElementById("num_seats").value;
+            var price = document.getElementById("price").value;
+            var total = num_seats * price;
+            document.getElementById("total").value = total;
+        }
+    </script>
+</body>
+</html>

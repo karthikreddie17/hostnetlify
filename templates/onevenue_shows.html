@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shows</title>
+    <style>
+        *, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #E2B842;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+a{
+    color: #fff;
+  font-weight: 400;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
+}
+
+      </style>
+    
+</head>
+<body>
+    {% if shows|length ==0 %}
+    <h1>NO shows FOUND for this {{ v1.venue_name }}</h1>
+    {% else %}
+    <!-- #id,name,time,rating,price  -->
+    <h1>List of all Shows for {{ v1.venue_name }}</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Rating</th>
+            <th>Price</th>
+        
+        </tr>
+        </thead>
+        {% for show in shows %}
+        <tbody>
+        <tr>
+            <td>{{ show['show_id'] }}</td>
+            <td><a href="">{{ show['show_name'] }}</a></td>
+            <td><a href="">{{ show['show_time'] }}</a></td>
+            <td><a href="">{{ show['show_rating'] }}</a></td>
+            <td><a href="">{{ show['show_price'] }}</a></td>
+        </tr>
+    </tbody>
+        {% endfor %}
+        
+    </table>
+    {% endif %}
+    <a href="/dashboard" class="back-link">&lt; Go back</a>
+</body>
+</html>

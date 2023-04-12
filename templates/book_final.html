@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function updateTotalPrice() {
+    var price = parseInt(document.getElementById("price").value);
+    var n_tickets = parseInt(document.getElementById("n_tickets").value);
+    var available_tickets = parseInt(document.getElementById("available_tickets").value);
+    if (!isNaN(price) && !isNaN(n_tickets)) {
+      if (n_tickets > available_tickets) {
+        alert("Housefull! Available tickets: " + available_tickets);
+        document.getElementById("n_tickets").value = available_tickets;
+        document.getElementById("t_price").value = (price * available_tickets);
+      } else {
+        document.getElementById("t_price").value = (price * n_tickets);
+      }
+    }
+  }
+	  </script>
+	<style>
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f2f2f2;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		h1 {
+			font-family: Arial, sans-serif;
+			text-align: center;
+			color: #333;
+			font-size: 2.5em;
+			margin-bottom: 30px;
+		}
+		.form-group {
+			margin-bottom: 20px;
+		}
+		label {
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			display: inline-block;
+			width: 150px;
+		}
+		input[type="text"], input[type="number"] {
+			display: inline-block;
+			width: 300px;
+			margin-right: 20px;
+			padding: 10px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		input[type="submit"] {
+			background-color: #04AA6D;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			display: block;
+			margin: 20px auto 0;
+		}
+		input[type="submit"]:hover {
+			background-color: #9a3131;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Book Tickets</h1>
+		<form method="POST" action="{{ url_for('book_final', venue_id=venue_id, show_id=show_id) }}">
+			<div class="form-group">
+				<label for="available_tickets">Available Tickets:</label>
+				<input type="text" id="available_tickets" name="available_tickets" value="{{ available_seats }}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="bu_id">User ID:</label>
+				<input type="text" id="bu_id" name="bu_id" value="{{ current_user.user_id }}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="bv_id">Venue ID:</label>
+				<input type="text" id="bv_id" name="bv_id" value="{{ venue_id }}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="bs_id">Show ID:</label>
+				<input type="text" id="bs_id" name="bs_id" value="{{ show_id }}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="price">Price:</label>
+				<input type="text" id="price" name="price" value="{{ show.show_price }}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="n_tickets">Number of Tickets:</label>
+				<input type="number" id="n_tickets" name="n_tickets" min="1" max="{{ available_seats }}" required onkeyup="updateTotalPrice()">
+			</div>
+		
+
+    <div class="form-group">
+      <label for="t_price">Total Price:</label>
+      <input type="text" class="form-control" id="t_price" name="t_price" value="{{ show.show_price }}" readonly>
+    </div>
+    <!-- <button type="submit" id="btn">Book Tickets</button> -->
+
+	<div class="row" style=" margin: 0 10px 10px 0;">
+		<input type="submit" value="Book Tickets">
+	</div>
+  </form>
+</div>
+
+
+</body>
+
+</html>

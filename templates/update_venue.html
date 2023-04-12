@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Venue</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 30px;
+			color: #333;
+		}
+		form {
+			margin: 50px auto;
+			width: 80%;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			color: #333;
+		}
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Update Venue</h1>
+	<form action="" method="post">
+		<label for="v_name">Venue Name:</label>
+		<input type="text" id="v_name" name="v_name" value="{{ venue.venue_name }}">
+		<label for="v_location">Venue Location:</label>
+		<input type="text" id="v_location" name="v_location" value="{{ venue.venue_location }}">
+		<label for="v_capacity">Venue capacity:</label>
+		<input type="text" id="v_capacity" name="v_capacity" value="{{ venue.venue_capacity }}">
+		<input type="submit" value="Update">
+	</form>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>All Shows</title>
+    <style>
+    body {
+        background-color: #F8F8FF;
+        font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        color: #0D0D0D;
+        font-size: 40px;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 50px auto;
+        font-size: 20px;
+        min-width: 600px;
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    th {
+        background-color: #1A1A1A;
+        color: #FFFFFF;
+        text-align: left;
+        padding: 10px;
+        font-size: 22px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #AAAAAA;
+        background-color: #FFFFFF;
+        font-weight: 400;
+        color: #3D3D3D;
+        font-size: 20px;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #F2F2F2;
+    }
+
+    tr:hover td {
+        background-color: #E9E9E9;
+    }
+
+    .actions a {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 6px;
+        background-color: #4CAF50;
+        color: #FFFFFF;
+        font-weight: 700;
+        text-decoration: none;
+        margin-right: 10px;
+        margin-bottom: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .actions a:hover {
+        background-color: #3E8E41;
+    }
+
+    a.add-show {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 6px;
+        background-color: #f44336;
+        color: #FFFFFF;
+        font-weight: 700;
+        text-decoration: none;
+        margin: 20px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    a.add-show:hover {
+        background-color: #f44336cc;
+    }
+    
+       
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand mr-auto" href="#">Book Tickets</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <!-- Update the form action to include venue_id -->
+        <form class="form-inline my-2 my-lg-0" method="POST" action="{{url_for('select_showfromvenue', venue_id=venue_id)}}">
+            <input class="form-control mr-sm-2" type="search" name="search_term" placeholder="Search" aria-label="Search" value="{{search_term}}">
+            <button class="btn btn-outline-success ml-auto" type="submit">Search</button>
+        </form>
+
+        </div>
+        <a href="/book_tickets" class="btn btn-outline-success ml-auto">>Venues</a>
+    </nav>
+    {% if shows|length ==0 %}
+    <h1>NO Shows FOUND</h1>
+    {% else %}
+    <div >
+        <h1>List of all Shows</h1>
+            <form method="POST">
+                <table >
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Rating</th>
+                            <th>Price</th>
+                            <th>SEATS</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for show in shows %}
+                        <tr>
+                            <td>{{ show['show_id'] }}</td>
+                            <td><a href="">{{ show['show_name'] }}</a></td>
+                            <td><a href="">{{ show['show_time'] }}</a></td>
+                            <td><a href="">{{ show['show_rating'] }}</a></td>
+                            <td><a href="">{{ show['show_price'] }}</a></td>
+                            <td><a href="">{{ show_available_seats[show['show_id']] }}</a></td>
+                            <td class="actions">
+                                <a href="/book_tickets/{{ venue_id }}/{{ show['show_id'] }}" class="btn btn-outline-primary">Book Now</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+    
+    </div>
+    {% endif %}
+</body>
+
+
+</html>     

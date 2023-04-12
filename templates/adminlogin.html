@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        h1 {
+            position: relative;
+            font-family: Arial, sans-serif;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            text-shadow: 1px 1px 1px #ccc;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            align-items: center;
+        }
+        form{
+            max-width: 400px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(54, 28, 28, 0);
+        }
+        a{
+            display: block;
+            text-align: center;
+            padding: 0;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #a9a7a7;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        input[type="submit"] {
+            background-color: #198757;
+            color: #fff;
+            padding: 10px;
+            width: 100px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 auto;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="submit"]:hover {
+            background-color: #9a3131;
+        }
+        label {
+            font-weight: bold;
+            font-size: larger;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .left{
+            margin-left: 20 px;
+        }
+        img{
+            position: fixed;
+            right:15px;
+            top:50px;
+            margin-right:12px;
+            width:30%;
+            height:50%;
+        }
+        .alert {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }   
+        
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1 align="center">Admin Login Page</h1>
+    <div class="left">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <label for="usernname">Admin name:</label>
+        {{ form.adminname }}
+        <label for="password">Password:</label>
+        {{ form.password }}
+        <input type="submit" value="Login">
+    </form>
+    </div>
+    <div class="right">
+        <img src="../static/3985678.jpg" alt="img not found">
+    </div>
+</body>
+
+</html>

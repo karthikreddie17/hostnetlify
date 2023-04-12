@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Show</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      form {
+        margin: 10px auto;
+        width: 80%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+      }
+      label {
+        display: block; 
+        font: bold;
+        color: #333;
+        margin-bottom: 10px;
+        margin-left: 2px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h1>Update Show</h1>
+    <form method="post">
+      <label for="s_name"><b>Name:</b> </label>
+      <input type="text" id="s_name" name="s_name" value="{{ show.show_name }}"><br><br>
+      <label for="s_name"><b>Tags:</b> </label>
+      <input type="text" id="s_tag" name="s_tag" value="{{ show.show_tags }}"><br><br>
+      <label for="s_rating"><b>Rating:</b> </label>
+      <input type="text" id="s_rating" name="s_rating" value="{{ show.show_rating }}"><br><br>
+      <label for="s_price"><b>Price:</b> </label>
+      <input type="text" id="s_price" name="s_price" value="{{ show.show_price }}"><br><br>
+      <input type="submit" value="Update">
+    </form>
+  </body>
+</html>

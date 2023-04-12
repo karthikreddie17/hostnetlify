@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Set body background color */
+        body {
+            background-color: #F4F4F4;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* Style the header */
+        h1 {
+            color: #9a3131;
+            font-size: 3em;
+            margin-bottom: 5px;
+            animation: animate 2s ease-in-out infinite;
+            text-align: center;
+            margin-top: 15px;
+            }
+
+            /* Add hover effect to the h1 element */
+            h1:hover {
+            color: #333;
+            }
+
+
+        /* Style the form */
+        form {
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Style the form labels */
+        label {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style the form inputs */
+        input[type="text"] {
+            padding: 5px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            background-color: #F8F8F8;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        /* Style the select input */
+        select {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            background-color: #F8F8F8;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        /* Style the form submit button */
+        input[type="submit"] {
+            display: block;
+            margin-top: 20px;
+            background-color: #198757;
+            color: #FFF;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        /* Style the date input */
+        input[type=date] {
+            padding: 5px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            background-color: #F8F8F8;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+    /* Style the time input */
+        input[type=time] {
+            padding: 5px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            background-color: #F8F8F8;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+
+        /* Change the background color of the submit button when hovering */
+        input[type="submit"]:hover {
+            background-color: #9a3131;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>ADDING NEW SHOW TO VENUE</h1>
+    <form action="/show/create" method="POST">
+        <label for="">Enter the Show name:</label>
+        <input name="s_name" type="text" required> 
+
+        <br><br>
+        <label for="">Enter the Show Date:</label>
+        <input name="s_date" type="date" required> 
+
+        <br><br>
+        <label for="">Enter the Show Time:</label>
+        <input name="s_time" type="time" required> 
+
+        <br><br>
+        <label for="">Enter the Show Tags:</label>
+        <input name="s_tag" type="text" required> 
+
+        <br><br>
+        <label for="">Enter the Show rating:</label>
+        <input name="s_rating" type="text" required>  
+
+        <br><br>
+        <label for="">Enter the Show Price:</label>
+        <input name="s_price" type="text" required> 
+
+        <br><br>
+        <label for="">Select Venue:</label>
+        <select name="v_id" id="">
+            {% for venue in venues %}
+            
+            <option value="{{venue['venue_id']}}">{{venue['venue_name']}}</option>
+
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Add this show to venue" required>
+        <br>
+        <a href="/dashboard">Go Back</a>
+
+    </form>
+</body>
+</html>
